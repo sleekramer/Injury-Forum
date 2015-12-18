@@ -21,9 +21,9 @@
           = f.text_field :name, class: 'form-control', autofocus: true, placeholder: "Common Name (Medical Term)"
 
         .form-group
-          = label_tag 'injury_symptoms', 'Symptoms'
+          = label_tag 'symptoms_ids', 'Symptoms'
           %br
-          = select_tag 'injury[symptom_ids][]', options_for_select(Symptom.all.map { |s| [s.name, s.id] }), class: 'selectpicker', multiple: ''
+          = collection_select :injury, :symptom_ids, @symptoms, :id, :name, {}, {class: 'selectpicker', multiple: ''}
 
         = form_group_tag(@injury.errors[:description]) do
           = f.label :description
