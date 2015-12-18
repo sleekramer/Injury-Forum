@@ -1,7 +1,10 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+body_parts = ["Foot & Heel", "Ankle", "Lower Leg", "Knee", "Thigh", "Hip & Groin", "Abdomen", "Lower Back", "Upper Back", "Chest", "Shoulder", "Arm", "Elbow", "Wrist", "Hand", "Neck", "Head & Face", "General Conditions" ]
+
+18.times do |i|
+  unless BodyPart.where(name: body_parts[i]) != []
+    BodyPart.create!(name: body_parts[i])
+  end
+end
+
+puts "Finished."
+puts "#{BodyPart.count} body parts in database"

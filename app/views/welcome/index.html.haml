@@ -1,3 +1,23 @@
+.jumbotron
+  .container
+    %h1 Injury Forum
+    %p Find and share information concerning your recovery
+    %p
+      = link_to "Register", new_user_registration_path, class:"btn btn-primary", role: "button"
+      or
+      = link_to "Login", new_user_session_path, class:"btn btn-default", role: "button"
 .container
-  %h1 Welcome#index
-  %p Find me in app/views/welcome/index.html.erb
+  .row
+    .col-md-8
+      .media
+        .media-body
+          %h4 Welcome to Injury Forum!
+          %p some words...
+    .col-md-4
+      .media
+        .media-body
+          %h4 Browse the site
+          %p
+            Skip registration for now and see what the site has to offer before deciding to join the discussion.
+            %br
+            = link_to "Browse", browse_path, class:"btn btn-primary"

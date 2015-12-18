@@ -7,4 +7,8 @@ class WelcomeController < ApplicationController
 
   def disclaimer
   end
+
+  def browse
+    @body_parts = BodyPart.all
+  end
 end

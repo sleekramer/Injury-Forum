@@ -1,0 +1,10 @@
+.container
+  %ul.nav.nav-pills
+    %li{:role => "presentation", :class => "dropdown navbar-btn"}
+      %a{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button", :class => "dropdown-toggle"}
+        Body Parts
+        %span.caret
+
+      %ul.dropdown-menu
+        - BodyPart.all.each do |body_part|
+          %li= link_to "#{body_part.name}", body_parts_show_path(body_part)
