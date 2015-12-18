@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151217212142) do
+ActiveRecord::Schema.define(version: 20151218150834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,18 @@ ActiveRecord::Schema.define(version: 20151217212142) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "injuries", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.integer  "body_part_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.text     "description"
+  end
+
+  add_index "injuries", ["body_part_id"], name: "index_injuries_on_body_part_id", using: :btree
+  add_index "injuries", ["user_id"], name: "index_injuries_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -42,4 +54,6 @@ ActiveRecord::Schema.define(version: 20151217212142) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
+  add_foreign_key "injuries", "body_parts"
+  add_foreign_key "injuries", "users"
 end

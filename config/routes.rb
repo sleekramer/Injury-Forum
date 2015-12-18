@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :body_parts, only: [:show]
+  resources :body_parts, only: [:show] do
+    resources :injuries, except: [:index]
+  end
 
   root to: 'welcome#index'
   get '/about' => 'welcome#about'

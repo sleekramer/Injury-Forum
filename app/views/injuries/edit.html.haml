@@ -1,0 +1,27 @@
+.container
+  %h1 Edit Injury Page
+  .row
+    .col-md-8
+      %p Guidelines for injury forums
+      %ul
+        %li Please use the format: "Common Name (Medical Term)"
+        -# The description will ultimately be updated from an description topic post with the highest number of votes
+        %li You may update the description for the injury. Please be considerate if the current description was not posted by you.
+
+      = form_for [@body_part, @injury] do |f|
+        - if @injury.errors.any?
+        .alert.alert-danger
+          %h4= pluralize(@injury.errors.count, "error")
+          %ul
+            - @injury.errors.full_messages.each do |msg|
+              %li= msg
+        = form_group_tag(@injury.errors[:name]) do
+          = f.label :name
+          = f.text_field :name, class: 'form-control', placeholder: "Common Name (Medical Term)"
+        = form_group_tag(@injury.errors[:description]) do
+          = f.label :description
+          = f.text_area :description, rows: 8, class: 'form-control', placeholder: "Enter description of injury here. Use guidelines above."
+        -# TODO: add field for accepting activities
+
+        .form-group
+          = f.submit "Update Forum", class: 'btn btn-primary'
