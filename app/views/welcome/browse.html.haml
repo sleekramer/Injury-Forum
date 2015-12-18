@@ -1,0 +1,7 @@
+.container
+  .row
+    .col-md-2
+      .btn-group-vertical.container-fluid
+        - @body_parts.each do |part|
+          %button{:type => "button", class: "btn btn-default"}
+            = link_to "#{part.name}", body_part_path(part) 
