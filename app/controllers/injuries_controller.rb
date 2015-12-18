@@ -11,6 +11,7 @@ class InjuriesController < ApplicationController
   end
 
   def create
+    binding.pry
     @body_part = BodyPart.find(params[:body_part_id])
     @injury = @body_part.injuries.new(injury_params)
     @injury.user = current_user
@@ -54,6 +55,6 @@ class InjuriesController < ApplicationController
 
   private
   def injury_params
-    params.require(:injury).permit(:name)
+    params.require(:injury).permit(:name, :description, symptom_ids: [])
   end
 end
