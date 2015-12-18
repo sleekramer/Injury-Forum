@@ -1,0 +1,27 @@
+.container
+  %h1 New Injury
+  .row
+    .col-md-8
+      %p Guidelines for creating a new injury forum
+      %ul
+        %li Ensure that a forum for your injury does not exist
+        %li Please use the format: "Common Name (Medical Term)"
+        %li Provide a description for the injury. Consider including:
+        %ul
+          %li Causes, diagnosis,symptoms, average recovery time
+      = form_for [@body_part, @injury] do |f|
+        - if @injury.errors.any?
+          .alert.alert-danger
+            %h4= pluralize(@injury.errors.count, "error")
+            %ul
+              - @injury.errors.full_messages.each do |msg|
+                %li= msg
+        = form_group_tag(@injury.errors[:name]) do
+          = f.label :name
+          = f.text_field :name, class: 'form-control', autofocus: true, placeholder: "Common Name (Medical Term)"
+        = form_group_tag(@injury.errors[:description]) do
+          = f.label :description
+          = f.text_area :description, rows: 8, class: 'form-control', placeholder: 'Enter description of injury here. Use guidelines above.'
+        -# TODO: add field for accepting activities
+        .form-group
+          = f.submit "Create Forum", class: 'btn btn-primary'

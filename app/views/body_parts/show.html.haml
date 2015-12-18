@@ -1,4 +1,9 @@
 .container
-  %h1
-    = @body_part.name
-    &nbsp;Injuries
+  .row
+    .col-md-8
+      %h1
+        = @body_part.name
+        Injuries
+    .col-md-4
+      %h4 Can't find the injury you're looking for?
+      = link_to "Add Injury", new_body_part_injury_path(@body_part), class: 'btn btn-primary'
