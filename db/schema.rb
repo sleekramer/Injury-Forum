@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151218150834) do
+ActiveRecord::Schema.define(version: 20151218164315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,22 @@ ActiveRecord::Schema.define(version: 20151218150834) do
 
   add_index "injuries", ["body_part_id"], name: "index_injuries_on_body_part_id", using: :btree
   add_index "injuries", ["user_id"], name: "index_injuries_on_user_id", using: :btree
+
+  create_table "injury_symptoms", force: :cascade do |t|
+    t.integer  "injury_id"
+    t.integer  "symptom_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "injury_symptoms", ["injury_id"], name: "index_injury_symptoms_on_injury_id", using: :btree
+  add_index "injury_symptoms", ["symptom_id"], name: "index_injury_symptoms_on_symptom_id", using: :btree
+
+  create_table "symptoms", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -56,4 +72,6 @@ ActiveRecord::Schema.define(version: 20151218150834) do
 
   add_foreign_key "injuries", "body_parts"
   add_foreign_key "injuries", "users"
+  add_foreign_key "injury_symptoms", "injuries"
+  add_foreign_key "injury_symptoms", "symptoms"
 end

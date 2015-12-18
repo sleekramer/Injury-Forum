@@ -16,7 +16,7 @@ class InjuriesController < ApplicationController
     @injury.user = current_user
     if @injury.save
       flash[:notice] = "New #{@body_part.name} injury: #{@injury.name} created."
-      redirect_to @injury
+      redirect_to [@body_part, @injury]
     else
       flash[:error] = "An error occurred. Please try again."
       render :new
@@ -33,7 +33,7 @@ class InjuriesController < ApplicationController
     @injury = @body_part.injuries.find(params[:id])
     if @injury.update_attributes(injury_params)
       flash[:notice] = "Update succeeded."
-      redirect_to @injury
+      redirect_to [@body_part, @injury]
     else
       flash[:error] = "An error occurred. Try updating again."
       render :edit
@@ -45,7 +45,7 @@ class InjuriesController < ApplicationController
     @injury = @body_part.injuries.find(params[:id])
     if @injury.destroy
       flash[:notice] = "Injury deleted."
-      redirect_to @body_part
+      redirect_to [@body_part, @injury]
     else
       flash[:error] = "An error occurred. Try again."
       render :show
