@@ -8,6 +8,7 @@ class InjuriesController < ApplicationController
   def new
     @body_part = BodyPart.find(params[:body_part_id])
     @injury = @body_part.injuries.new
+    @symptoms = Symptom.all
   end
 
   def create
@@ -54,6 +55,6 @@ class InjuriesController < ApplicationController
 
   private
   def injury_params
-    params.require(:injury).permit(:name)
+    params.require(:injury).permit(:name, :description, symptom_ids: [])
   end
 end
