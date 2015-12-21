@@ -5,7 +5,6 @@ gem 'rails', '4.2.4'
 gem 'pg'
 
 gem 'haml'
-gem 'html2haml'
 gem 'haml-rails', '~> 0.9'
 
 gem 'sass-rails', '~> 5.0'
@@ -19,8 +18,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
 group :production do
   gem 'rails_12factor'
@@ -33,4 +30,7 @@ end
 
 group :development do
   gem 'pry-rails'
+  gem 'html2haml'
+  gem 'quiet_assets'
+  gem 'rails-erd'
 end

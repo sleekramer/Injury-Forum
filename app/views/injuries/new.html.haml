@@ -19,9 +19,15 @@
         = form_group_tag(@injury.errors[:name]) do
           = f.label :name
           = f.text_field :name, class: 'form-control', autofocus: true, placeholder: "Common Name (Medical Term)"
+
+        .form-group
+          = label_tag 'injury_symptoms', 'Symptoms'
+          %br
+          = select_tag 'injury[symptom_ids][]', options_for_select(Symptom.all.map { |s| [s.name, s.id]}), class: 'selectpicker', multiple: '', "data-live-search" => true
         = form_group_tag(@injury.errors[:description]) do
           = f.label :description
           = f.text_area :description, rows: 8, class: 'form-control', placeholder: 'Enter description of injury here. Use guidelines above.'
+
         -# TODO: add field for accepting activities
         .form-group
           = f.submit "Create Forum", class: 'btn btn-primary'

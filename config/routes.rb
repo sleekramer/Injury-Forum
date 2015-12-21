@@ -6,6 +6,14 @@ Rails.application.routes.draw do
     resources :injuries, except: [:index]
   end
 
+  resources :injuries, except: [:index] do
+    resources :symptoms
+  end
+
+  resources :symptoms do
+    resources :injuries, except: [:index]
+  end
+
   root to: 'welcome#index'
   get '/about' => 'welcome#about'
   get '/disclaimer' => 'welcome#disclaimer'
