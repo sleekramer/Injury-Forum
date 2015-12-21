@@ -4,6 +4,21 @@
       %h1
         = @body_part.name
         Injuries
+      - @injuries.each do |injury|
+        .panel.panel-info
+          .panel-heading
+            %b= link_to "#{injury_capitalized(injury)}", body_part_injury_path(@body_part, injury)
+            -if user_can_edit?(injury)
+              = link_to "Edit", edit_body_part_injury_path(@body_part, injury), class: 'pull-right'
+          .panel-body
+            %b Description:
+            %br/
+            = injury.description[0..150]
+            = "..."
+            %br/
+            %b Symptoms:
+            %br/
+            = injury.symptoms.pluck(:name).join(", ")
     .col-md-4
       %h4 Can't find the injury you're looking for?
       = link_to "Add Injury", new_body_part_injury_path(@body_part), class: 'btn btn-primary'

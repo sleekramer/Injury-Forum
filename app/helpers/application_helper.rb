@@ -10,4 +10,7 @@ module ApplicationHelper
       content_tag(:div, capture(&block), class: 'form-group')
     end
   end
+  def user_can_edit?(injury)
+    injury.user == current_user
+  end
 end

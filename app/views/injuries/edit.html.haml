@@ -10,14 +10,18 @@
 
       = form_for [@body_part, @injury] do |f|
         - if @injury.errors.any?
-        .alert.alert-danger
-          %h4= pluralize(@injury.errors.count, "error")
-          %ul
-            - @injury.errors.full_messages.each do |msg|
-              %li= msg
+          .alert.alert-danger
+            %h4= pluralize(@injury.errors.count, "error")
+            %ul
+              - @injury.errors.full_messages.each do |msg|
+                %li= msg
         = form_group_tag(@injury.errors[:name]) do
           = f.label :name
           = f.text_field :name, class: 'form-control', placeholder: "Common Name (Medical Term)"
+        .form-group
+          = label_tag 'injury-symptoms', 'Symptoms'
+          %br
+          = select_tag 'injury[symptom_ids][]', options_for_select(Symptom.all.map {|s| [s.name, s.id, should_be_selected(s, @injury)] }), class: 'selectpicker', multiple: '', "data-live-search" => true, "data-width" => '100%'
         = form_group_tag(@injury.errors[:description]) do
           = f.label :description
           = f.text_area :description, rows: 8, class: 'form-control', placeholder: "Enter description of injury here. Use guidelines above."
