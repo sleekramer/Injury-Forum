@@ -2,22 +2,32 @@
   .row
     .col-md-8
       .jumbotron
-        %h1= @injury.name
-        %p
-          %b Body part:
-          = link_to "#{@body_part.name}", body_part_path(@body_part)
-        %p
-          %b Symptoms:
-          %br/
-          = @injury.symptoms.pluck(:name).join(", ")
-        %p
-          %b Description:
-          %br/
-          = @injury.description
+        %h2= @injury.name
+        %small
+          %p
+            %b Body part:
+            = link_to "#{@body_part.name}", body_part_path(@body_part)
+          %p
+            %b Symptoms:
+            %br/
+            = @injury.symptoms.pluck(:name).join(", ")
+          %p
+            %b Description:
+            %br/
+            = @injury.description
         -if user_can_edit?(@injury)
-          %p.pull-right= link_to "Edit", edit_body_part_injury_path(@body_part, @injury)
+          %p.pull-right= link_to "Edit", edit_body_part_injury_path(@body_part, @injury), data: {"no-turbolink" => true}
     .col-md-4
       %h4 Top Related Activities
-.containter-fuid
+.containter
   .row
-  -# TODO make a nav with tabs for each topic
+    .col-md-1
+    .col-md-8
+      %ul.nav.nav-tabs
+        -@injury.topics.each do |topic|
+          %li{:role => "presentation"}
+            = link_to "#{topic.name}", "##{id_friendly(topic.name)}", "aria-controls" => "#{topic.name}", "data-toggle" => "tab", role: "tab"
+      .tab-content
+        -@injury.topics.each do |topic|
+          .tab-pane{:id => "#{id_friendly(topic.name)}", :role => "tabpanel"}
+            = render partial: 'topics/display', locals: {injury: @injury, topic: topic}

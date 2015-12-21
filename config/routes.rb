@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
+  get 'topics/show'
+
   devise_for :users
 
+  authenticated :user do
+    root 'welcome#browse', as: :authenticated
+  end
   resources :body_parts, only: [:show] do
     resources :injuries, except: [:index]
   end
@@ -13,6 +18,8 @@ Rails.application.routes.draw do
   resources :symptoms do
     resources :injuries, except: [:index]
   end
+
+
 
   root to: 'welcome#index'
   get '/about' => 'welcome#about'
