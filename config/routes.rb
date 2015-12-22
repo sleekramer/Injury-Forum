@@ -13,6 +13,11 @@ Rails.application.routes.draw do
 
   resources :injuries, except: [:index] do
     resources :symptoms
+    resources :topics, only: []
+  end
+
+  resources :topics, only: [] do
+    resources :posts, only: [:create, :destroy]
   end
 
   resources :symptoms do

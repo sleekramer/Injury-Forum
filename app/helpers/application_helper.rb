@@ -11,8 +11,8 @@ module ApplicationHelper
     end
   end
 
-  def user_can_edit?(injury)
-    injury.user == current_user
+  def user_can_edit?(object)
+    object.user == current_user
   end
 
 
