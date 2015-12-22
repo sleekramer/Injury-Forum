@@ -1,5 +1,6 @@
 class InjuriesController < ApplicationController
   before_action :authenticate_user!
+
   def show
     @body_part = BodyPart.find(params[:body_part_id])
     @injury = Injury.find(params[:id])
@@ -16,6 +17,7 @@ class InjuriesController < ApplicationController
     @injury = @body_part.injuries.new(injury_params)
     @injury.user = current_user
     if @injury.save
+      @injury.generate_topics
       flash[:notice] = "New #{@body_part.name} injury: #{@injury.name} created."
       redirect_to [@body_part, @injury]
     else
@@ -57,4 +59,6 @@ class InjuriesController < ApplicationController
   def injury_params
     params.require(:injury).permit(:name, :description, symptom_ids: [])
   end
+
+
 end
