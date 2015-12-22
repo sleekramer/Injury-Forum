@@ -1,8 +1,22 @@
 .container
   .row
-    .col-md-1
     .col-md-11
+
       %h3
         = injury.name + ": " + topic.name + " Discussion"
         %br/
         %small read through the posts or create your own!
+      .container.post-form
+        .col-md-8
+          .new-post
+            = render partial: 'posts/form', locals: {topic: topic, post: topic.posts.new}
+        .col-md-4
+          %h3 Posting Guidelines
+          %ul
+            %li Keep posts as simple as possible
+            %li There is no need to preface any posts with your credentials or background information about you
+            %li Citing your sources is always a good call
+      .js-posts.container
+        .row
+          - topic.posts.where.not(id: nil).each do |post|
+            = render post

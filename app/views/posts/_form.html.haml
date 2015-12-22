@@ -1,0 +1,10 @@
+%h3 New Post
+= form_for [topic, post], remote: true do |f|
+  .form-group
+    = f.text_field :title, class: 'form-control', placeholder: "Title..."
+  .form-group
+    = f.label :body, "Post Content"
+    %br/
+    = f.text_area :body, class: 'form-control', placeholder: "Enter post content here...", rows: 6
+  .form-group
+    = f.submit "Create Post", class: 'btn btn-primary'

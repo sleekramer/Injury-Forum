@@ -1,0 +1,11 @@
+= div_for(post, class: "col-md-8 panel panel-default") do
+  .panel-heading
+    %h4.panel-title.post-header
+      = post.title
+      %small
+        %a{href: "#"}
+          %span.glyphicon.glyphicon-user{"aria-hidden" => true}
+          = post.user.username
+        .pull-right= link_to "Delete", topic_post_path(post.topic, post), method: :delete, remote: true
+  .panel-body
+    %p.post-body= post.body

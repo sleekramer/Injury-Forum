@@ -1,0 +1,6 @@
+<% if @post.destroyed? %>
+  $('#post_' +<%= @post.id %>).hide();
+  $('.flash').html("<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash[:notice] %></div>")
+<% else %>
+  $('.flash').html("<div class='alert alert-danger'><button type='button' class'close' data-dismiss='alert'>&times;</button><%= flash[:error]%></div>");
+<% end %>
