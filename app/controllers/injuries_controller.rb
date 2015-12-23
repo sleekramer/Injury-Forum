@@ -4,6 +4,7 @@ class InjuriesController < ApplicationController
   def show
     @body_part = BodyPart.find(params[:body_part_id])
     @injury = Injury.find(params[:id])
+    @top_activities = @injury.top_five_activities_array
   end
 
   def new
