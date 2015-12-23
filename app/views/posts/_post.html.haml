@@ -9,3 +9,8 @@
         .pull-right= link_to "Delete", topic_post_path(post.topic, post), method: :delete, remote: true
   .panel-body
     %p.post-body= post.body
+  .panel-footer
+    .container
+      .row
+        = div_for(post, class: 'col-md-2 js-favorite-post') do
+          = render partial: 'favorites/favorite', locals: {favoriteable: post}

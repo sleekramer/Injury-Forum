@@ -1,0 +1,15 @@
+<% if @favorite.valid? %>
+  $('.flash').html("<div class='alert alert-success'><button type='button' class='close' 'data-dismiss'='alert'>&times;</button><%= flash[:notice] %></div>");
+  <% if @favoriteable.class.to_s == "Injury" %>
+    $('.js-favorite-injury').html("<%= j(render partial: 'favorites/favorite', locals: {favoriteable: @favoriteable})%>");
+  <% elsif @favoriteable.class.to_s == "Post" %>
+    $('#post_' + <%= @favoriteable.id %> + '.js-favorite-post').html("<%= j(render partial: 'favorites/favorite', locals: {favoriteable: @favoriteable})%>");
+  <% end %>
+<% else %>
+  $('.flash').html("<div class='alert alert-danger'><button type='button' class='close' 'data-dismiss'='alert'>&times;</button><%= flash[:error] %></div>");
+  <% if @favoriteable.class.to_s == "Injury" %>
+    $('.js-favorite-injury').html("<%= j(render partial: 'favorites/favorite', locals: {favoriteable: @favoriteable})%>");
+  <% elsif @favoriteable.class.to_s == "Post" %>
+    $('#post_' + <%= @favoriteable.id %> + '.js-favorite-post').html("<%= j(render partial: 'favorites/favorite', locals: {favoriteable: @favoriteable})%>");
+  <% end %>
+<% end %>

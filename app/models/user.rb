@@ -2,7 +2,10 @@ class User < ActiveRecord::Base
   attr_accessor :login
   has_many :injuries
   has_many :posts
-  
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_posts, through: :favorites, source: :favoriteable, source_type: :Post
+  has_many :favorite_injuries, through: :favorites, source: :favoriteable, source_type: :Injury
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -16,6 +19,10 @@ class User < ActiveRecord::Base
     else
       where(conditions.to_hash).first
     end
+  end
+
+  def favorite_for(post_or_injury)
+    favorites.where(favoriteable_id: post_or_injury.id, favoriteable_type: post_or_injury.class.name).first
   end
 
   validates :username, presence: true, uniqueness: {case_sensitive: false}, length: {minimum: 4}

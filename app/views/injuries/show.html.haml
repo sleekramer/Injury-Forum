@@ -2,7 +2,10 @@
   .row
     .col-md-8
       .jumbotron
-        %h2= @injury.name
+        %h2
+          = @injury.name
+          .pull-right.js-favorite-injury
+            = render partial: 'favorites/favorite', locals: {favoriteable: @injury}
         %small
           %p
             %b Body part:
@@ -18,7 +21,7 @@
         -if user_can_edit?(@injury)
           %p.pull-right= link_to "Edit", edit_body_part_injury_path(@body_part, @injury), data: {"no-turbolink" => true}
     .col-md-4
-      %h4 Top Related Activities
+      %h3 Top Related Activities
       %ol.js-activities
         - @top_activities.each do |name, count|
           %li= name + ": " + count.to_s
