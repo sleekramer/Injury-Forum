@@ -1,7 +1,7 @@
 class Injury < ActiveRecord::Base
   belongs_to :user
   belongs_to :body_part
-  has_many :injury_symptoms
+  has_many :injury_symptoms, dependent: :destroy
   has_many :symptoms, through: :injury_symptoms
   has_many :topics, dependent: :destroy
   has_many :activities, dependent: :destroy
