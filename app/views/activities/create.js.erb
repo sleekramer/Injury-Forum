@@ -1,0 +1,8 @@
+<% if @activity.valid? %>
+  $('.js-activities').html("<% @top_activities.each do |name, count| %><li><%= name + ': ' + count.to_s %></li><% end %>");
+  $('.flash').html("<div class='alert alert-success'><button type='button' class='close' 'data-dismiss'='alert'>&times;</button><%= flash[:notice] %></div>");
+  $('.new-activity').html("<%= escape_javascript(render partial: 'activities/form', locals: {injury: @injury, activity: @new_activity})%>");
+<% else %>
+  $('.flash').html("<div class='alert alert-danger'><button type='button' class='close' 'data-dismiss'='alert'>&times;</button><%= flash[:error] %></div>");
+  $('.new-activity').html("<%= escape_javascript(render partial: 'activities/form', locals: {injury: @injury, activity: @activity})%>");
+<% end %>

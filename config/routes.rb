@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :injuries, except: [:index] do
     resources :symptoms
     resources :topics, only: []
+    resources :activities, only: [:create]
   end
 
   resources :topics, only: [] do

@@ -1,0 +1,5 @@
+= form_for [injury, activity], remote: true do |f|
+  .input-group
+    = f.text_field :name, class: 'form-control', autocomplete: "on", placeholder: "Activity/Sport name"
+    %span.input-group-btn
+      = f.submit "+", class: "btn btn-primary"
