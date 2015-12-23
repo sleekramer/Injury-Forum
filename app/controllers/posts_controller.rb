@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @topic = Topic.find(params[:topic_id])
     @post = @topic.posts.new(post_params)
@@ -27,7 +29,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html
       format.js
-    end     
+    end
   end
 
   private

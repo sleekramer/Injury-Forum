@@ -1,4 +1,6 @@
 class ActivitiesController < ApplicationController
+  before_action :authenticate_user!
+  
   def create
     @injury = Injury.find(params[:injury_id])
     @activity = @injury.activities.new(activity_params)

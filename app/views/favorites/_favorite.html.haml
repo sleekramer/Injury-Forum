@@ -1,0 +1,8 @@
+- if favorite = current_user.favorite_for(favoriteable)
+  = link_to [favoriteable, favorite], method: :delete, remote: true, class: "#{button_if_injury(favoriteable)}-default" do
+    %i.glyphicon.glyphicon-heart-empty
+    &nbsp; Unfollow
+- else
+  = link_to [favoriteable, current_user.favorites.new], method: :post, remote: true, class: "#{button_if_injury(favoriteable)}-primary" do
+    %i.glyphicon.glyphicon-heart
+    Follow

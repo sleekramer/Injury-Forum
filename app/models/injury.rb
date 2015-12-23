@@ -4,7 +4,8 @@ class Injury < ActiveRecord::Base
   has_many :injury_symptoms
   has_many :symptoms, through: :injury_symptoms
   has_many :topics, dependent: :destroy
-  has_many :activities
+  has_many :activities, dependent: :destroy
+  has_many :favorites, as: :favoriteable
 
   before_create :injury_capitalize
 

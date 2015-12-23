@@ -1,6 +1,6 @@
 <% if @post.valid? %>
-  $('.js-posts').append("<%= escape_javascript(render(@post))%>");
-  $('.flash').html("<div class='alert alert-danger'><button type='button' class='close' 'data-dismiss'='alert'>&times;</button><%= flash[:notice] %></div>");
+  $('.js-posts > .row').append("<%= escape_javascript(render(@post))%>");
+  $('.flash').html("<div class='alert alert-success'><button type='button' class='close' 'data-dismiss'='alert'>&times;</button><%= flash[:notice] %></div>");
   $('.new-post').html("<%= escape_javascript(render partial: 'posts/form', locals: {topic: @topic, post: @new_post})%>");
 <% else %>
   $('.flash').html("<div class='alert alert-danger'><button type='button' class='close' 'data-dismiss'='alert'>&times;</button><%= flash[:error] %></div>");
