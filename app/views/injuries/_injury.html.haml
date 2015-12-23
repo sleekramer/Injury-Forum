@@ -6,7 +6,7 @@
   .panel-body
     %b Description:
     %br/
-    = injury.description[0..150]
+    = truncate(injury.description, length: 150)
     = "..."
     %br/
     %b Symptoms:
