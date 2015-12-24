@@ -1,4 +1,5 @@
 module ApplicationHelper
+
   def bootsrap_key(key)
     {alert: "warning", notice: "success", error: "danger"}[key.to_sym]
   end
@@ -15,8 +16,8 @@ module ApplicationHelper
     object.user == current_user
   end
 
-
   def id_friendly(s)
     s.gsub(/[\W]/, "-")
   end
+
 end

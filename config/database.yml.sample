@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: 
+
+development:
+  <<: *default
+  database: injury_forum_development
+
+test:
+  <<: *default
+  database: injury_forum_test
+
+production:
+  <<: *default
+  database: injury_forum_production
+  username: injury_forum
+  password: <%= ENV['INJURY_FORUM_DATABASE_PASSWORD'] %>
