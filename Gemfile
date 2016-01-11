@@ -6,7 +6,6 @@ gem 'pg'
 
 gem 'haml'
 gem 'haml-rails', '~> 0.9'
-
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
 gem 'uglifier', '>= 1.3.0'

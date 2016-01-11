@@ -1,4 +1,5 @@
 module ApplicationHelper
+
   def bootsrap_key(key)
     {alert: "warning", notice: "success", error: "danger"}[key.to_sym]
   end
@@ -15,11 +16,12 @@ module ApplicationHelper
     object.user == current_user
   end
 
-
   def id_friendly(s)
     s.gsub(/[\W]/, "-")
   end
+
   def profile_link_path(post)
     "/body_parts/#{post.topic.injury.body_part.id}/injuries/#{post.topic.injury.id}##{post.topic.name}"
   end
+
 end
