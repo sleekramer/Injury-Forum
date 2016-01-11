@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
 
-  get 'topics/show'
-
   devise_for :users
 
   authenticated :user do
     root 'welcome#browse', as: :authenticated
+    get '/profile' => 'users#show'
   end
   resources :body_parts, only: [:show] do
     resources :injuries, except: [:index]
@@ -34,4 +33,5 @@ Rails.application.routes.draw do
   get '/about' => 'welcome#about'
   get '/disclaimer' => 'welcome#disclaimer'
   get '/browse' => 'welcome#browse'
+
 end
