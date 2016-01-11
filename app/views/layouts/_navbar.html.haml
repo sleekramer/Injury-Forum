@@ -8,5 +8,5 @@
     = link_to "Login", new_user_session_path, class: "btn btn-default navbar-btn"
     = link_to "Register", new_user_registration_path, class: "btn btn-primary navbar-btn"
   -else
-    %h4.navbar-text= link_to "#{current_user.username}", edit_user_registration_path
+    %h4.navbar-text= link_to "#{current_user.username}", profile_path
     = link_to "Logout", destroy_user_session_path, class: "btn btn-default navbar-btn", method: :delete

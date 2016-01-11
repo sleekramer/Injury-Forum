@@ -1,0 +1,34 @@
+.container
+  .row
+    .col-md-8
+      %h2= @user.username
+    .col-md-4
+      -if @user == current_user
+        = link_to "Edit Account", edit_user_registration_path(current_user), class: 'btn btn-primary'
+  .row
+    %h3 Posts
+    - @user.posts.each do |post|
+      .media
+        .media-body
+          %h4.media-heading
+            = link_to "#{post.title}", profile_link_path(post)
+          .media-body
+            = post.body
+    - if (fav_injuries = @user.favorites.where(favoriteable_type: "Injury")) != []
+      %h3 Injuries Followed
+      - fav_injuries.each do |fav|
+        .media
+          .media-body
+            %h4.media-heading
+              = link_to "#{fav.favoriteable.name}", body_part_injury_path(fav.favoriteable.body_part, fav.favoriteable)
+            .media-body
+              = truncate(fav.favoriteable.description, length: 150)
+    - if (fav_posts = @user.favorites.where(favoriteable_type: "Post")) != []
+      %h3 Posts Followed
+      - fav_posts.each do |fav|
+        .media
+          .media-body
+            %h4.media-heading
+              = link_to "#{fav.favoriteable.title}", profile_link_path(fav.favoriteable)
+            .media-body
+              = fav.favoriteable.body

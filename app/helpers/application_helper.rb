@@ -20,4 +20,8 @@ module ApplicationHelper
     s.gsub(/[\W]/, "-")
   end
 
+  def profile_link_path(post)
+    "/body_parts/#{post.topic.injury.body_part.id}/injuries/#{post.topic.injury.id}##{post.topic.name}"
+  end
+
 end
