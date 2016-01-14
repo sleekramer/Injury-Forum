@@ -18,6 +18,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
 gem 'jquery-turbolinks', '~> 2.1'
+gem 'searchkick'
 
 group :production do
   gem 'rails_12factor'

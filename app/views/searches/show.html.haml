@@ -1,0 +1,7 @@
+.container
+  .row
+    .col-md-8
+      %h2 Results
+      %ul
+      - @results.each do |result|
+        %li= link_for_object(result)

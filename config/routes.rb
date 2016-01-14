@@ -33,5 +33,5 @@ Rails.application.routes.draw do
   get '/about' => 'welcome#about'
   get '/disclaimer' => 'welcome#disclaimer'
   get '/browse' => 'welcome#browse'
-
+  get '/search' => 'searches#show'
 end
