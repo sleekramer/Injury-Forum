@@ -3,5 +3,4 @@
     .col-md-8
       %h1= @activity.name + " Related Injuries"
       %br/
-      - @injury_ids.each do |injury_id|
-        = render Injury.find(injury_id)
+      = render(@injuries)

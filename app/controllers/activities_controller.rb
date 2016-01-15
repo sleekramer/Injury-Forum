@@ -19,7 +19,7 @@ class ActivitiesController < ApplicationController
 
   def show
     @activity = Activity.find(params[:id])
-    @injury_ids = Activity.where(name: @activity.name).map{|a| a.injury_id}.uniq
+    @injuries = Activity.sorted_injuries(@activity.name)
   end
 
   private
