@@ -24,7 +24,9 @@
       %h3 Top Related Activities
       %ol.js-activities
         - @top_activities.each do |name, count|
-          %li= name + ": " + count.to_s
+          %li
+            = link_to name, activity_path(Activity.where(name: name).first)
+            = ": " + count.to_s
       %p What activity or sport were you participating in when you incurred this injury?
       .new-activity
         = render partial: 'activities/form', locals: {injury: @injury, activity: @injury.activities.new}
