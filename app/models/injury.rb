@@ -8,7 +8,7 @@ class Injury < ActiveRecord::Base
   has_many :favorites, as: :favoriteable, dependent: :destroy
 
   before_create :injury_capitalize
-
+  searchkick
   validates :name, presence: true, length: {minimum: 10}, uniqueness: true
   validates :description, presence: true, length: {minimum: 30}
 

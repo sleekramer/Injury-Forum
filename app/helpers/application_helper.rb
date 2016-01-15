@@ -24,4 +24,16 @@ module ApplicationHelper
     "/body_parts/#{post.topic.injury.body_part.id}/injuries/#{post.topic.injury.id}##{post.topic.name}"
   end
 
+  def link_for_object(object)
+    klass = object.class.to_s
+    if klass == "BodyPart"
+      link_to object.name, object
+    elsif klass == "Injury"
+      link_to object.name, [object.body_part, object]
+    elsif klass == "Activity"
+      object.name
+    elsif klass == "Post"
+      link_to object.name, profile_link_path(object)
+    end
+  end
 end
