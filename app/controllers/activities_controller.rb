@@ -1,6 +1,6 @@
 class ActivitiesController < ApplicationController
   before_action :authenticate_user!
-  
+
   def create
     @injury = Injury.find(params[:injury_id])
     @activity = @injury.activities.new(activity_params)
@@ -15,6 +15,11 @@ class ActivitiesController < ApplicationController
       format.html
       format.js
     end
+  end
+
+  def show
+    @activity = Activity.find(params[:id])
+    @injuries = Activity.sorted_injuries(@activity.name)
   end
 
   private

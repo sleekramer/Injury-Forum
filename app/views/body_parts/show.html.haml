@@ -4,6 +4,7 @@
       %h1
         = @body_part.name
         Injuries
+      %br/
       = render(@injuries) || content_tag(:h5) do
         No injuries submitted
     .col-md-4

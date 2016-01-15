@@ -1,8 +1,8 @@
 .panel.panel-info
   .panel-heading
-    %b= link_to "#{injury.name}", body_part_injury_path(@body_part, injury)
+    %b= link_to "#{injury.name}", body_part_injury_path(injury.body_part, injury)
     -if user_can_edit?(injury)
-      = link_to "Edit", edit_body_part_injury_path(@body_part, injury), class: 'pull-right', data: {"no-turbolink" => true}
+      = link_to "Edit", edit_body_part_injury_path(injury.body_part, injury), class: 'pull-right', data: {"no-turbolink" => true}
   .panel-body
     %b Description:
     %br/

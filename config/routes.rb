@@ -36,4 +36,5 @@ Rails.application.routes.draw do
   get '/disclaimer' => 'welcome#disclaimer'
   get '/browse' => 'welcome#browse'
   get '/search' => 'searches#show'
+  resources :activities, only: [:show]
 end
