@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :favorites, dependent: :destroy
   has_many :favorite_posts, through: :favorites, source: :favoriteable, source_type: :Post
   has_many :favorite_injuries, through: :favorites, source: :favoriteable, source_type: :Injury
+  has_many :votes, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

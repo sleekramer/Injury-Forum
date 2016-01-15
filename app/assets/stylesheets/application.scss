@@ -39,3 +39,33 @@
 .js-posts{
   padding-top: 5px;
 }
+
+.js-favorite-post {
+  display: inline-block;
+  font-size: 12px;
+  padding-left: 10px;
+
+
+}
+.js-votes {
+  display: inline-block;
+  font-size: 12px;
+
+  padding-right: 10px;
+
+}
+.post-delete {
+  font-size: 12px;
+}
+
+.padded-right-border{
+  padding-left: 5px;
+  padding-right: 5px;
+  border-right: solid 1px gray;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.6;
+  color: #000000;
+}

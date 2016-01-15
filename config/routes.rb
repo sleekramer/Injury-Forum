@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   end
   resources :posts, only: [] do
     resources :favorites, only: [:create, :destroy]
+    post '/helpful' => 'votes#helpful', as: :helpful
+    post '/unhelpful' => 'votes#unhelpful', as: :unhelpful
   end
 
 
