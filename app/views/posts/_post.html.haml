@@ -2,15 +2,21 @@
   .panel-heading
     %h4.panel-title.post-header
       = post.title
-      %small
-        %a{href: "#"}
-          %span.glyphicon.glyphicon-user{"aria-hidden" => true}
+      %small.pull-right
+        - if post.user == current_user
+          %a{href: '/profile'}
+            %span.glyphicon.glyphicon-user{"aria-hidden" => true}
+            = post.user.username
+        - else
+          %i.glyphicon.glyphicon-user{"aria-hidden" => true}
           = post.user.username
-        .pull-right= link_to "Delete", topic_post_path(post.topic, post), method: :delete, remote: true
+
   .panel-body
     %p.post-body= post.body
   .panel-footer
-    .container
-      .row
-        = div_for(post, class: 'col-md-2 js-favorite-post') do
-          = render partial: 'favorites/favorite', locals: {favoriteable: post}
+    = div_for(post, class: 'js-favorite-post') do
+      = render partial: 'favorites/favorite', locals: {favoriteable: post}
+
+    = div_for(post, class: 'js-votes') do
+      = render partial: 'votes/voter', locals: {post: post}
+    .pull-right.post-delete= link_to "Delete", topic_post_path(post.topic, post), method: :delete, remote: true

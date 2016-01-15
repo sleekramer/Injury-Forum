@@ -1,5 +1,5 @@
 class InjuriesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
 
   def show
     @body_part = BodyPart.find(params[:body_part_id])

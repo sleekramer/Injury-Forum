@@ -36,4 +36,14 @@ module ApplicationHelper
       link_to object.name, profile_link_path(object)
     end
   end
+
+  def user_vote?(post)
+    vote = current_user.votes.where(post: post) ? vote : current_user.votes.new(post: post)
+  end
+
+  def disable?(post, value)
+    if current_user && post.votes.pluck(:user_id, :value).include?([current_user.id, value])
+      'disabled'
+    end
+  end
 end
