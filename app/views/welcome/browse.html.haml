@@ -4,3 +4,13 @@
       .btn-group-vertical.container-fluid
         - @body_parts.each do |part|
           = link_to "#{part.name}", body_part_path(part), class: 'btn btn-default'
+    .col-md-8
+      %h1 Site Activity
+      - @feed_items.each do |feed_item|
+        .media
+          .media-body
+
+            %h3
+              %span.glyphicon{class: "#{feed_item_glyphicon(feed_item.trackable)}", "aria-hidden" => true}
+              = feed_item.user.username
+              = display_feed_item(feed_item)
