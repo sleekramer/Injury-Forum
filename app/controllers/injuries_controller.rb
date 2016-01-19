@@ -59,7 +59,7 @@ class InjuriesController < ApplicationController
 
   private
   def injury_params
-    params.require(:injury).permit(:name, :description, symptom_ids: [])
+    params.require(:injury).permit(:name, :description, symptom_ids: [], images_files: [])
   end
 
 
