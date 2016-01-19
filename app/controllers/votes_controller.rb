@@ -3,6 +3,7 @@ class VotesController < ApplicationController
 
   def helpful
     update_vote(1)
+
   end
 
   def unhelpful
@@ -19,8 +20,9 @@ class VotesController < ApplicationController
     if @vote
       @vote.update_attribute(:value, value)
     else
-      current_user.votes.create!(value: value, post: @post)
+      @vote = current_user.votes.create!(value: value, post: @post)
     end
+      AddUserFeedItem.call(current_user, "vote", @vote)
     respond_to do |format|
       format.html
       format.js

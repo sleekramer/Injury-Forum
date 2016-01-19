@@ -10,5 +10,6 @@ class WelcomeController < ApplicationController
 
   def browse
     @body_parts = BodyPart.all
+    @feed_items = FeedItem.first(10)
   end
 end

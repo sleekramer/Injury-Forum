@@ -6,6 +6,7 @@ class Injury < ActiveRecord::Base
   has_many :topics, dependent: :destroy
   has_many :activities, dependent: :destroy
   has_many :favorites, as: :favoriteable, dependent: :destroy
+  has_many :feed_items, as: :trackable, dependent: :destroy
 
   before_create :injury_capitalize
   searchkick
