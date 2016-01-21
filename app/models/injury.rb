@@ -6,6 +6,9 @@ class Injury < ActiveRecord::Base
   has_many :topics, dependent: :destroy
   has_many :activities, dependent: :destroy
   has_many :favorites, as: :favoriteable, dependent: :destroy
+  has_many :feed_items, as: :trackable, dependent: :destroy
+  has_many :images, as: :imageable, dependent: :destroy
+  accepts_attachments_for :images, attachment: :file
 
   before_create :injury_capitalize
   searchkick

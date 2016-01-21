@@ -19,6 +19,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'jquery-turbolinks', '~> 2.1'
 gem 'searchkick'
+gem 'refile', require: 'refile/rails'
+gem 'refile-mini_magick'
+
+gem 'refile-s3'
+gem 'figaro'
 
 group :production do
   gem 'rails_12factor'

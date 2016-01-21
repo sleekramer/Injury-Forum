@@ -27,6 +27,9 @@
         = form_group_tag(@injury.errors[:description]) do
           = f.label :description
           = f.text_area :description, rows: 8, class: 'form-control', placeholder: 'Enter description of injury here. Use guidelines above.'
+        .form-group
+          = f.label :images_files
+          = f.attachment_field :images_files, multiple: true
 
         -# TODO: add field for accepting activities
         .form-group

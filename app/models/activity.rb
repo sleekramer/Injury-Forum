@@ -1,6 +1,7 @@
 class Activity < ActiveRecord::Base
   belongs_to :injury
   before_create :capitalize_name
+  
   searchkick
   validates :name, presence: true, length: {minimum: 3}
   private

@@ -19,6 +19,7 @@ class InjuriesController < ApplicationController
     @injury.user = current_user
     if @injury.save
       @injury.generate_topics
+      AddUserFeedItem.call(current_user, action_name, @injury)
       flash[:notice] = "New #{@body_part.name} injury: #{@injury.name} created."
       redirect_to [@body_part, @injury]
     else
@@ -58,7 +59,7 @@ class InjuriesController < ApplicationController
 
   private
   def injury_params
-    params.require(:injury).permit(:name, :description, symptom_ids: [])
+    params.require(:injury).permit(:name, :description, symptom_ids: [], images_files: [])
   end
 
 

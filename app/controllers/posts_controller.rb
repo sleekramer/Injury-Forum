@@ -8,6 +8,7 @@ class PostsController < ApplicationController
     @new_post = @topic.posts.new
 
     if @post.save
+      AddUserFeedItem.call(current_user, action_name, @post)
       flash[:notice] = "Post created successfully."
     else
       flash[:error] = "An error occurred. Please try posting again."
