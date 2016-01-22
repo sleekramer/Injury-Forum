@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   end
 
   resources :injuries, only: [] do
-    resources :topics, only: []
     resources :activities, only: [:create]
     resources :favorites, only: [:create, :destroy]
   end
