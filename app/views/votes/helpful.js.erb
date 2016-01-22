@@ -1,1 +1,7 @@
-$('#post_' + <%= @post.id %> + '.js-votes').html("<%= j(render partial: 'votes/voter', locals: {post: @post}) %>")
+<% if @updated %>
+  $('#injury_description').html("<b>Description:</b><br><%= j(@post.topic.injury.description) %>");
+  $('#js_description_voter').html("What did you think of this description? &nbsp;<div class='description-voter' id='desc_voter_#{@highest_post.id}'><%= j(render partial: 'votes/voter', locals: {post: @highest_post}) %>");
+  $('#post_' + <%= @highest_post.id %> + '.js-votes, #desc_voter_' + <%= @highest_post.id %>).html("<%= j(render partial: 'votes/voter', locals: {post: @highest_post}) %>");
+<% else %>
+  $('#post_' + <%= @post.id %> + '.js-votes, #desc_voter_' + <%= @post.id %>).html("<%= j(render partial: 'votes/voter', locals: {post: @post}) %>");
+<% end %>

@@ -8,6 +8,7 @@ class PostsController < ApplicationController
     @new_post = @topic.posts.new
 
     if @post.save
+      @post.votes.create!(user: @post.user, value: 1)
       AddUserFeedItem.call(current_user, action_name, @post)
       flash[:notice] = "Post created successfully."
     else

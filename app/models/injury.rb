@@ -24,6 +24,20 @@ class Injury < ActiveRecord::Base
     self.activities.group(:name).count.sort{|x,y| x[1] <=> y[1]}.reverse.first(5)
   end
 
+  def description_post_highest_score
+    topics.first.posts.order(:score).last
+  end
+
+  def update_description
+    initial_description = self.description
+    update_attribute(:description, description_post_highest_score.body)
+    if initial_description == self.description
+      return false
+    else
+      return true
+    end
+  end
+
   private
   def injury_capitalize
     self.name = name.split.map {|s| s.capitalize}.join(" ")

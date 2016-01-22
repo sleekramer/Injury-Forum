@@ -14,19 +14,20 @@
             %b Symptoms:
             %br/
             = @injury.symptoms.pluck(:name).join(", ")
-          %p
+          %p#injury_description
             %b Description:
             %br/
             = @injury.description
-          %p
-            %b Images:
-            %br/
-
-            - @injury.images.each.with_index do |image, i|
-              = link_to "image ##{i + 1}", attachment_url(image, :file)
+          - if !@injury.images.empty?
+            %p
+              %b Images:
               %br/
-        -if user_can_edit?(@injury)
-          %p.pull-right= link_to "Edit", edit_body_part_injury_path(@body_part, @injury), data: {"no-turbolink" => true}
+
+              - @injury.images.each.with_index do |image, i|
+                = link_to "image ##{i + 1}", attachment_url(image, :file), target: "_blank"
+                %br/
+          -if user_can_edit?(@injury)
+            %p.pull-right= link_to "Edit", edit_body_part_injury_path(@body_part, @injury), data: {"no-turbolink" => true}
     .col-md-4
       %h3 Top Related Activities
       %ol.js-activities
@@ -37,6 +38,11 @@
       %p What activity or sport were you participating in when you incurred this injury?
       .new-activity
         = render partial: 'activities/form', locals: {injury: @injury, activity: @injury.activities.new}
+      %br/
+      - if @post
+        #js_description_voter
+          What did you think of this description? &nbsp;
+          = render partial: 'votes/voter', locals: {post: @post}
 
 .containter
   .row

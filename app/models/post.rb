@@ -9,4 +9,10 @@ class Post < ActiveRecord::Base
   alias_attribute :name, :title
   validates :title, presence: true, length: {minimum: 5}
   validates :body, presence: true, length: {minimum: 5}
+
+  def update_score
+    new_score = votes.inject(0){|sum, vote| sum += vote.value} + (1 - (1.0 / votes.count))
+    update_attribute(:score, new_score)
+  end
+
 end
