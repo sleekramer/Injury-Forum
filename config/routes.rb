@@ -10,9 +10,7 @@ Rails.application.routes.draw do
     resources :injuries, except: [:index]
   end
 
-  resources :injuries, except: [:index] do
-    resources :symptoms
-    resources :topics, only: []
+  resources :injuries, only: [] do
     resources :activities, only: [:create]
     resources :favorites, only: [:create, :destroy]
   end
@@ -21,9 +19,6 @@ Rails.application.routes.draw do
     resources :posts, only: [:create, :destroy]
   end
 
-  resources :symptoms do
-    resources :injuries, except: [:index]
-  end
   resources :posts, only: [] do
     resources :favorites, only: [:create, :destroy]
     post '/helpful' => 'votes#helpful', as: :helpful
