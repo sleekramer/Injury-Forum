@@ -3,12 +3,10 @@ class VotesController < ApplicationController
 
   def helpful
     update_vote(1)
-
   end
 
   def unhelpful
     update_vote(-1)
-
   end
 
   private
@@ -22,7 +20,12 @@ class VotesController < ApplicationController
     else
       @vote = current_user.votes.create!(value: value, post: @post)
     end
-      AddUserFeedItem.call(current_user, "vote", @vote)
+    @post.update_score
+    if @post.topic.name == "Description"
+      @updated = @post.topic.injury.update_description
+      @highest_post = @post.topic.injury.description_post_highest_score if @updated
+    end
+    AddUserFeedItem.call(current_user, "vote", @vote)
     respond_to do |format|
       format.html
       format.js

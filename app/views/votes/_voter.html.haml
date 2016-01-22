@@ -1,6 +1,7 @@
-= link_to post_helpful_path(post), method: :post, remote: true, class: "padded-right-border #{disable?(post, 1)}"do
-  %i.glyphicon.glyphicon-chevron-up
-  = "Helpful (#{post.votes.where(value: 1).count})"
-= link_to post_unhelpful_path(post), method: :post, remote: true, class: "padded-right-border #{disable?(post, -1)}" do
-  %i.glyphicon.glyphicon-chevron-down
-  = "Unhelpful (#{post.votes.where(value: -1).count})"
+.description-voter{id: "desc_voter_#{@post.id}"}
+  = link_to post_helpful_path(post), method: :post, remote: true, class: "padded-right-border #{disable?(post, 1)}"do
+    %i.glyphicon.glyphicon-chevron-up
+    = "Helpful (#{post.votes.where(value: 1).count})"
+  = link_to post_unhelpful_path(post), method: :post, remote: true, class: "padded-right-border #{disable?(post, -1)}" do
+    %i.glyphicon.glyphicon-chevron-down
+    = "Unhelpful (#{post.votes.where(value: -1).count})"
