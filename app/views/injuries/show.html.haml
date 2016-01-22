@@ -24,7 +24,7 @@
               %br/
 
               - @injury.images.each.with_index do |image, i|
-                = link_to "image ##{i + 1}", attachment_url(image, :file)
+                = link_to "image ##{i + 1}", attachment_url(image, :file), target: "_blank"
                 %br/
           -if user_can_edit?(@injury)
             %p.pull-right= link_to "Edit", edit_body_part_injury_path(@body_part, @injury), data: {"no-turbolink" => true}
