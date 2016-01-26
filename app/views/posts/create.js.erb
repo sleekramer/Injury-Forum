@@ -1,8 +1,15 @@
 <% if @post.valid? %>
-  $('.js-posts > .row').append("<%= escape_javascript(render(@post))%>");
+  var $append_post_loc = $(".topic-" + <%= @topic.id %> + "-pagination > div:last-child");
+  if ($append_post_loc.length) {
+    $($append_post_loc).after("<%= escape_javascript(render(@post))%>");
+  } else {
+    var $append_post_loc = $(".topic-" + <%= @topic.id %> + "-pagination");
+    $($append_post_loc).append("<%= j(render(@post))%>");
+  }
+
   $('.flash').html("<div class='alert alert-success'><button type='button' class='close' 'data-dismiss'='alert'>&times;</button><%= flash[:notice] %></div>");
-  $('.new-post').html("<%= escape_javascript(render partial: 'posts/form', locals: {topic: @topic, post: @new_post})%>");
+  $("#topic-" + <%= @topic.id %> + "-new-post").html("<%= escape_javascript(render partial: 'posts/form', locals: {topic: @topic, post: @new_post})%>");
 <% else %>
   $('.flash').html("<div class='alert alert-danger'><button type='button' class='close' 'data-dismiss'='alert'>&times;</button><%= flash[:error] %></div>");
-  $('.new-post').html("<%= escape_javascript(render partial: 'posts/form', locals: {topic: @topic, post: @post})%>");
+  $("#topic-" + <%= @topic.id %> + "-new-post").html("<%= escape_javascript(render partial: 'posts/form', locals: {topic: @topic, post: @post})%>");
 <% end %>

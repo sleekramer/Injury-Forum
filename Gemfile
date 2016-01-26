@@ -24,6 +24,8 @@ gem 'refile-mini_magick'
 
 gem 'refile-s3'
 gem 'figaro'
+gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate-bootstrap'
 
 group :production do
   gem 'rails_12factor'
