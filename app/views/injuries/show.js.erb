@@ -1,0 +1,1 @@
+$(".topic-" + <%= params[:topic_id] %> + "-pagination").html("<%= j(render partial: 'posts/post', collection: @posts = Post.where(topic_id: params[:topic_id]).where.not(id: nil).paginate(:page => params[:page], :per_page => 10))%><%= j(js_will_paginate @posts, class:'col-md-8', :params => {topic_id: params[:topic_id]})%>")
