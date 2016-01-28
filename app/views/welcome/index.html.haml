@@ -12,12 +12,19 @@
       .media
         .media-body
           %h4 Welcome to Injury Forum!
-          %p some words...
+          %p Injury Forum is a forum based site where users can share anything and everything about injuries and recovery.  Use the search feature to look for the injury that you are concerned about or create a new forum for that injury if one doesn't exist.
+          %p
+            Everyone is free to browse the site and read the content available.  However, if you want to contribute to the information on the site, you need to
+            = link_to "create an account.", new_user_registration_path
+
+          %p Registered users have the ability to create new forums for injuries, create posts to the forums, share how they incurred an injury, track the injuries and posts that they find most helpful in their user profile, and more...
+          %p We hope that Injury Forum can help every user find the information they need to make a complete recovery!
     .col-md-4
       .media
         .media-body
           %h4 Browse the site
           %p
             Skip registration for now and see what the site has to offer before deciding to join the discussion.
-            %br
+            %br/
+            %br/
             = link_to "Browse", browse_path, class:"btn btn-primary"
