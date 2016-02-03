@@ -68,4 +68,25 @@ module ApplicationHelper
   def a_or_an(string)
       %(a e i o u).include?(string[0].downcase) ? "an " + string : "a " + string
   end
+
+  def topic_description(topic_name)
+    case topic_name
+    when "Description"
+      "Post a description for this injury. Or read through and vote for your favorite description. The top voted post will be displayed as the 'Description' of this injury."
+    when "Recovery Stories"
+      "Read or share your uplifting, inspirational, or instructive stories about recovering from this injury."
+    when "Treatment Plans"
+      "What was the treatment plan that you followed, or what plan were you prescribed?"
+    when "Prevention"
+      "What steps would you take to decrease the likelyhood of incurring this injury?"
+    when "Q&A"
+      "Ask a question that you would like another user to answer in this forum."
+    when "Recovery Method"
+      "Post an exercise, stretch, or other method of recovery(ie. ice, compression, myofascial rolling). Include references to guides/videos or provide thorough explanations."
+    when "Resources"
+      "What books, blogs, videos, or other resources did you use to aid your recovery?"
+    else
+      ""
+    end
+  end
 end
