@@ -1,4 +1,6 @@
 class Injury < ActiveRecord::Base
+  include PgSearch
+  multisearchable  :against => [:name]
   belongs_to :user
   belongs_to :body_part
   has_many :injury_symptoms, dependent: :destroy
@@ -11,7 +13,7 @@ class Injury < ActiveRecord::Base
   accepts_attachments_for :images, attachment: :file
 
   before_create :injury_capitalize
-  searchkick
+
   validates :name, presence: true, length: {minimum: 10}, uniqueness: true
   validates :description, presence: true, length: {minimum: 30}
 

@@ -1,8 +1,10 @@
 class Activity < ActiveRecord::Base
+  include PgSearch
+  multisearchable :against => [:name]
   belongs_to :injury
   before_create :capitalize_name
-  
-  searchkick
+
+
   validates :name, presence: true, length: {minimum: 3}
   private
   def capitalize_name

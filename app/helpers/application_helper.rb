@@ -25,6 +25,7 @@ module ApplicationHelper
   end
 
   def link_for_object(object)
+    
     klass = object.class.to_s
     if klass == "BodyPart"
       link_to object.name, object
