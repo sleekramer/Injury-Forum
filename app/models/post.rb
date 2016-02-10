@@ -1,10 +1,12 @@
 class Post < ActiveRecord::Base
+  include PgSearch
+  multisearchable :against => [:title, :body]
   belongs_to :topic
   belongs_to :user
   has_many :favorites, as: :favoriteable, dependent: :destroy
   has_many :votes, dependent: :destroy
   has_many :feed_items, as: :trackable, dependent: :destroy
-  searchkick
+
 
   alias_attribute :name, :title
   validates :title, presence: true, length: {minimum: 5}

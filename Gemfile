@@ -18,7 +18,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
 gem 'jquery-turbolinks', '~> 2.1'
-gem 'searchkick'
+gem 'pg_search', github: 'Casecommons/pg_search'
 gem 'refile', require: 'refile/rails'
 gem 'refile-mini_magick'
 
