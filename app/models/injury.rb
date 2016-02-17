@@ -14,7 +14,7 @@ class Injury < ActiveRecord::Base
 
   before_create :injury_capitalize
 
-  validates :name, presence: true, length: {minimum: 10}, uniqueness: true
+  validates :name, presence: true, length: {minimum: 10}, uniqueness: {case_sensitive: false}
   validates :description, presence: true, length: {minimum: 30}
 
   def generate_topics

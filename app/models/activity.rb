@@ -12,6 +12,6 @@ class Activity < ActiveRecord::Base
   end
 
   def self.sorted_injuries(activity)
-    self.where(name: activity).group_by{|a| a.injury}.sort{|x,y| x.size <=> y.size}.map{|x| x[0]}
+    self.where(name: activity).group_by{|a| a.injury}.sort{|x,y| x.size <=> y.size}.flatten.first
   end
 end
