@@ -23,7 +23,7 @@
         .form-group
           = label_tag 'injury_symptoms', 'Symptoms'
           %br
-          = select_tag 'injury[symptom_ids][]', options_for_select(Symptom.all.map { |s| [s.name, s.id]}), class: 'selectpicker', multiple: '', "data-live-search" => true, "data-width" => "100%"
+          = select_tag 'injury[symptom_ids][]', options_for_select(Symptom.all.map { |s| [s.name, s.id]}, params[:injury] ? params[:injury][:symptom_ids] : ''), class: 'selectpicker', multiple: '', "data-live-search" => true, "data-width" => "100%"
         = form_group_tag(@injury.errors[:description]) do
           = f.label :description
           = f.text_area :description, rows: 8, class: 'form-control', placeholder: 'Enter description of injury here. Use guidelines above.'
