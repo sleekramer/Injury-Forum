@@ -18,6 +18,7 @@ If you would like to see the app in action, please checkout the [demo](https://i
 Please feel free to clone the repo and test it out locally.  Again, this will require that you have Ruby 2.2.4, Rails 4.2.4, and PostgreSQL installed locally.  Once cloned, run these command from your command line:
 
 ```
+$ bundle install
 $ rake db:create
 $ rake db:migrate
 $ rake db:seed
